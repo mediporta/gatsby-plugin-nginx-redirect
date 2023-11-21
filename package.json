@@ -1,5 +1,5 @@
 {
-  "name": "@floris.groenendijk/gatsby-plugin-nginx-redirect",
+  "name": "@mediporta/gatsby-plugin-nginx-redirect",
   "version": "0.0.14",
   "description": "Adds your redirects to nginx conf on gatsby build",
   "main": "index.js",
@@ -18,7 +18,7 @@
     "nginx.conf",
     "createRedirect"
   ],
-  "repository": "https://github.com/fgroenendijk/gatsby-plugin-nginx-redirect",
+  "repository": "https://github.com/mediporta/gatsby-plugin-nginx-redirect",
   "author": "Floris Groenendijk",
   "license": "MIT",
   "dependencies": {
@@ -35,14 +35,14 @@
     "jest": "^29.4.2"
   },
   "peerDependencies": {
-    "gatsby": "^5.0.0"
+    "gatsby": "^4.0.0"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "homepage": "https://github.com/fgroenendijk/gatsby-plugin-nginx-redirect",
+  "homepage": "https://github.com/mediporta/gatsby-plugin-nginx-redirect",
   "bugs": {
-    "url": "https://github.com/fgroenendijk/gatsby-plugin-nginx-redirect"
+    "url": "https://github.com/mediporta/gatsby-plugin-nginx-redirect"
   },
   "publishConfig": {
     "access": "public"

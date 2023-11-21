@@ -4,12 +4,13 @@ This plugin creates a nginx conf file with the gatsby created redirects
 
 ### Dependencies
 
-Gatsby version 5+
+Gatsby version 4
+
 In order to work you have to use the output .conf file in your nginx server
 
 ## How to install
 
-`npm install --save @floris.groenendijk/gatsby-plugin-nginx-redirect`
+`npm install --save @mediporta/gatsby-plugin-nginx-redirect`
 
 ## Available options
 
@@ -34,7 +35,7 @@ So "server" will search for the server header, "http.server" will search for htt
 plugins: [
   ...,
   {
-    resolve: "@floris.groenendijk/gatsby-plugin-nginx-redirect",
+    resolve: "@mediporta/gatsby-plugin-nginx-redirect",
     options: {
       inputConfigFile: `${__dirname}/nginx.conf`,
       outputConfigFile: `${__dirname}/nginx.out.conf`,
