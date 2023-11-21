@@ -1,6 +1,6 @@
 {
   "name": "@mediporta/gatsby-plugin-nginx-redirect",
-  "version": "0.0.1",
+  "version": "0.0.14",
   "description": "Adds your redirects to nginx conf on gatsby build",
   "main": "index.js",
   "scripts": {
