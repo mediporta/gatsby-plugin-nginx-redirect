@@ -5,6 +5,7 @@ This plugin creates a nginx conf file with the gatsby created redirects
 ### Dependencies
 
 Gatsby version 4
+
 In order to work you have to use the output .conf file in your nginx server
 
 ## How to install
