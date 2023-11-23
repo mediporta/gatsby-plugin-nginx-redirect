@@ -51,7 +51,7 @@ const recursiveSearch = (needle, object) => {
 
 export async function onPostBuild(
   { store, reporter },
-  { outputConfigFile, inputConfigFile, whereToIncludeRedirects = "server" }
+  { outputConfigFile, inputConfigFile, whereToIncludeRedirects = "server", _experimentalPrependParentSlug = false }
 ) {
   const { redirects } = store.getState();
   removeSync(outputConfigFile);
@@ -67,9 +67,20 @@ export async function onPostBuild(
       conf.flush();
       await sleep(500);
 
+      const nodes = getNodes()
+      var fields = nodes
+        .map(k => k.fields)
+        .filter(k => k !== undefined)
+
       let foundObject = searchObject(whereToIncludeRedirects, conf.nginx);
       if (foundObject) {
         redirects.forEach((redirect) => {
+          
+          if (_experimentalPrependParentSlug) {
+            var field = fields.find(f => f?.slug === redirect.toPath)
+            redirect.toPath = field.parentSlug + "/" + redirect.toPath;
+          }
+
           foundObject._add(
             'rewrite',
             `^${redirect.fromPath}\\/?$ ${redirect.toPath} ${redirect.isPermanent ? "permanent" : "redirect"}`
