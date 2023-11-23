@@ -79,7 +79,7 @@ export async function onPostBuild(
       if (foundObject) {
         redirects.forEach((redirect) => {
           
-          if (experimentalPrependParentSlug) {
+          if (_experimentalPrependParentSlug) {
             var field = fields.find(f => f?.slug === redirect.toPath)
             redirect.toPath = field.parentSlug + "/" + redirect.toPath;
           }
