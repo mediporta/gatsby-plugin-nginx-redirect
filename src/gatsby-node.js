@@ -86,7 +86,7 @@ export async function onPostBuild(
 
           foundObject._add(
             'rewrite',
-            `^${redirect.fromPath}\\/?$ ${redirect.toPath} ${redirect.isPermanent ? "permanent" : "redirect"}`
+            `^${redirect.fromPath}/?$ ${redirect.toPath} ${redirect.isPermanent ? "permanent" : "redirect"}`
           )
         });
       }
