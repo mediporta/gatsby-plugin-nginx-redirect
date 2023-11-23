@@ -50,10 +50,10 @@ const recursiveSearch = (needle, object) => {
 }
 
 export async function onPostBuild(
-  { store, reporter },
+  { store, getNodes, reporter },
   { outputConfigFile, inputConfigFile, whereToIncludeRedirects = "server", _experimentalPrependParentSlug = false }
 ) {
-  const { redirects, getNodes } = store.getState();
+  const { redirects } = store.getState();
   removeSync(outputConfigFile);
 
   return new Promise((resolve) => {
