@@ -51,7 +51,7 @@ const recursiveSearch = (needle, object) => {
 
 export async function onPostBuild(
   { store, reporter },
-  { outputConfigFile, inputConfigFile, whereToIncludeRedirects = "server", _experimentalPrependParentSlug = false }
+  { outputConfigFile, inputConfigFile, whereToIncludeRedirects = "server", experimentalPrependParentSlug = false }
 ) {
   const { redirects } = store.getState();
   removeSync(outputConfigFile);
@@ -67,6 +67,9 @@ export async function onPostBuild(
       conf.flush();
       await sleep(500);
 
+      if(experimentalPrependParentSlug){
+        reporter.warn("Using experimental prepend parent slug")
+      }
       const nodes = getNodes()
       var fields = nodes
         .map(k => k.fields)
@@ -76,7 +79,7 @@ export async function onPostBuild(
       if (foundObject) {
         redirects.forEach((redirect) => {
           
-          if (_experimentalPrependParentSlug) {
+          if (experimentalPrependParentSlug) {
             var field = fields.find(f => f?.slug === redirect.toPath)
             redirect.toPath = field.parentSlug + "/" + redirect.toPath;
           }
