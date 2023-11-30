@@ -49,12 +49,6 @@ const recursiveSearch = (needle, object) => {
   return result;
 }
 
-const appendTraillingSpaceWildcard = (path) => {
-  if (path.slice(-1) === '/'){
-    return path + "?$"
-  } 
-  return path + "/?$"
-}
 
 export async function onPostBuild(
   { store, reporter },
@@ -80,7 +74,7 @@ export async function onPostBuild(
           
           foundObject._add(
             'rewrite',
-            `^${appendTraillingSpaceWildcard(redirect.fromPath)} ${redirect.toPath} ${redirect.isPermanent ? "permanent" : "redirect"}`
+            `^${redirect.fromPath}?$ ${redirect.toPath} ${redirect.isPermanent ? "permanent" : "redirect"}`
           )
         });
       }
