@@ -57,8 +57,8 @@ const appendTraillingSpaceWildcard = (path) => {
 }
 
 export async function onPostBuild(
-  { store, getNodes, reporter },
-  { outputConfigFile, inputConfigFile, whereToIncludeRedirects = "server", _experimentalPrependParentSlug = false }
+  { store, reporter },
+  { outputConfigFile, inputConfigFile, whereToIncludeRedirects = "server"}
 ) {
   const { redirects } = store.getState();
   removeSync(outputConfigFile);
@@ -74,23 +74,10 @@ export async function onPostBuild(
       conf.flush();
       await sleep(500);
 
-      if(_experimentalPrependParentSlug){
-        reporter.warn("Using experimental prepend parent slug")
-      }
-      const nodes = getNodes()
-      var fields = nodes
-        .map(k => k.fields)
-        .filter(k => k !== undefined)
-
       let foundObject = searchObject(whereToIncludeRedirects, conf.nginx);
       if (foundObject) {
         redirects.forEach((redirect) => {
           
-          if (_experimentalPrependParentSlug) {
-            var field = fields.find(f => f?.slug === redirect.toPath)
-            redirect.toPath = field.parentSlug + "/" + redirect.toPath;
-          }
-
           foundObject._add(
             'rewrite',
             `^${appendTraillingSpaceWildcard(redirect.fromPath)} ${redirect.toPath} ${redirect.isPermanent ? "permanent" : "redirect"}`
